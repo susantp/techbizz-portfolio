@@ -3,13 +3,17 @@ import Slider from "../components/home/Slider";
 import useContentSchema from "../hooks/useContentSchema";
 import WorkProcessComponent from "../components/home/WorkProcessComponent";
 import React from "react";
+import WhyChooseUs from "../components/home/WhyChooseUsComponent";
+import WhatWeDoComponent from "../components/home/WhatWeDoComponent";
 
 const Home: React.FC = (): JSX.Element => {
-    const {workProcessComponent} = useContentSchema();
+    const {workProcessComponent, whyChooseUs, whatWeDo} = useContentSchema();
     return (
         <Layout>
             <Slider/>
-            <WorkProcessComponent heading={workProcessComponent.title} processes={workProcessComponent.processes}/>
+            <WorkProcessComponent heading={workProcessComponent.heading} processes={workProcessComponent.processes}/>
+            <WhyChooseUs heading={whyChooseUs.heading} content={whyChooseUs.content}/>
+            <WhatWeDoComponent heading={whatWeDo.heading} items={whatWeDo.items} />
         </Layout>
     )
 }

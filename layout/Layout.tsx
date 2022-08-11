@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 function Layout({children}): JSX.Element {
     return (
-        <div className={`flex flex-col h-screen bg-slate-100 `}>
+        <div className={`flex flex-col bg-slate-100 `}>
             <Navbar></Navbar>
             <Content>{children}</Content>
             <Footer></Footer>

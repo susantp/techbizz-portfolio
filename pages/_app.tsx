@@ -1,8 +1,13 @@
 import '../styles/globals.css'
-import {Component} from "react";
+import {Component, FC} from "react";
 
-function MyApp({ Component, pageProps }): JSX.Element {
-  return <Component {...pageProps} />
+interface MyAppProps {
+    Component: any,
+    pageProps: any
+}
+
+const MyApp: FC<MyAppProps> = ({Component, pageProps}): JSX.Element => {
+    return <Component {...pageProps} />
 }
 
 export default MyApp
