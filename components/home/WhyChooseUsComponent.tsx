@@ -13,7 +13,7 @@ const WhyChooseUsComponent: FC<whyChooseUsProps> =
                     <h2 className={`text-4xl uppercase`}>{heading}</h2>
                 </div>
                 <div>
-                    <p className={`leading-loose`}>{content}</p>
+                    <p className={`leading-loose text-center`}>{content}</p>
                 </div>
             </div>
         )
