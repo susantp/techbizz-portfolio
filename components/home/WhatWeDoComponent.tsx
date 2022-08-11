@@ -37,7 +37,7 @@ const WhatWeDoComponent: FC<WhatWeDoComponentProps> = ({heading, items}): JSX.El
     return (
         <div className={`flex flex-col gap-y-5 my-10 container mx-auto`}>
             <div className={`py-4`}><h2 className={`text-4xl uppercase text-center`}>{heading}</h2></div>
-            <div className={`grid grid-cols-1 sm:grid-cols-3 gap-y-6 mt-5 `}>
+            <div className={`grid grid-cols-1 sm:grid-cols-3  gap-y-6 mt-5 `}>
                 {items.map((item) =>
                     <SingleWhatWeDoComponent
                         title={item.title}
