@@ -27,7 +27,7 @@ const WhatWeDoComponent: FC<WhatWeDoComponentProps> = ({heading, items}): JSX.El
                 <Image src={icon} width={150} height={150} alt={slug}/>
             </div>
             <div>
-                <p className={`text-xl font-medium`}>{title}</p>
+                <p className={`text-xl font-medium text-center`}>{title}</p>
             </div>
             <div >
                 <p className={`text-sm text-center`}>{description}</p>
@@ -35,9 +35,9 @@ const WhatWeDoComponent: FC<WhatWeDoComponentProps> = ({heading, items}): JSX.El
         </div>
 
     return (
-        <div className={`flex flex-col gap-y-5 my-10`}>
-            <div className={`flex w-full justify-evenly py-4`}><h2 className={`text-4xl uppercase`}>{heading}</h2></div>
-            <div className={`grid grid-cols-3 gap-y-6 w-full mt-5 `}>
+        <div className={`flex flex-col gap-y-5 my-10 container mx-auto`}>
+            <div className={`py-4`}><h2 className={`text-4xl uppercase text-center`}>{heading}</h2></div>
+            <div className={`grid grid-cols-1 sm:grid-cols-3 gap-y-6 mt-5 `}>
                 {items.map((item) =>
                     <SingleWhatWeDoComponent
                         title={item.title}

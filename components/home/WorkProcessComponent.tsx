@@ -30,8 +30,8 @@ const WorkProcessComponent: FC<WorkProcessComponentProps> = ({heading, processes
         </div>
 
     return (
-        <div className={`flex flex-col gap-y-5 my-10`}>
-            <div className={`flex w-full justify-evenly py-4`}><h2 className={`text-4xl uppercase`}>{heading}</h2></div>
+        <div className={`flex flex-col gap-y-5 my-10 container mx-auto`}>
+            <div className={`py-4`}><h2 className={`text-center text-4xl uppercase`}>{heading}</h2></div>
             <div className={`flex justify-evenly w-full flex-wrap mt-5`}>
                 {processes.map((item) =>
                     <SingleProcessComponent

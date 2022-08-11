@@ -4,7 +4,7 @@ interface ContentProps {
 }
 const Content: FC<ContentProps> = ({children}): ReactElement => {
     return (
-        <div className={`flex flex-col flex-grow container mx-auto gap-y-3 w-full `}>{children}</div>
+        <div className={`flex flex-col flex-grow`}>{children}</div>
     );
 }
 
