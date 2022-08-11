@@ -5,10 +5,10 @@ import Logo from "../components/home/Logo";
 
 
 function Navbar(): JSX.Element {
-    const [navigationItems, logo] = useContentSchema()
+    const {navigationItems, logo} = useContentSchema()
     return (
         <div className={`w-screen py-2`}>
-            <div className={`container mx-auto w-full flex justify-between flex items-center `}>
+            <div className={`container mx-auto w-full flex justify-between flex items-center invisible md:visible`}>
                 <Logo title={logo.title} imagePath={logo.imagePath}/>
                 <NavigationItems items={navigationItems}/>
             </div>

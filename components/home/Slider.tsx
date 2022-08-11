@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 
-function Slider(props) {
+const Slider: FC = (): JSX.Element => {
     return (
-        <div>Slider</div>
+        <div className={`bg-blue-100 h-32`}>Sliders</div>
     );
 }
 
