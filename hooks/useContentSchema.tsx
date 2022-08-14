@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {SiOctopusdeploy} from "react-icons/si";
-import {BiAnalyse} from "react-icons/bi";
-import {CgPerformance} from "react-icons/cg";
+import {SiOctopusdeploy, SiGoogleoptimize, SiAndroidstudio, SiMaterialdesignicons} from "react-icons/si";
+import {BiAnalyse, BiCartAlt} from "react-icons/bi";
+import {CgPerformance,CgWebsite} from "react-icons/cg";
+import {DiResponsive} from "react-icons/di"
 import {MdDesignServices, MdOutlineDeveloperMode} from "react-icons/md";
 
 export default function UseContentSchema() {
@@ -68,37 +69,43 @@ export default function UseContentSchema() {
         heading: "what we do",
         items: [
             {
-                icon: 'https://via.placeholder.com/150.png',
+                icon:<CgWebsite className={iconClasses} />,
+                image: 'https://via.placeholder.com/150.png',
                 title: 'Web Development',
                 slug: 'web-development',
                 description: 'Tech Bizz delivers end to end business solutions that leverage the deep industry and functional expertise.'
             },
             {
-                icon: 'https://via.placeholder.com/150.png',
+                icon:<SiAndroidstudio className={iconClasses} />,
+                image: 'https://via.placeholder.com/150.png',
                 title: 'Android Development',
                 slug: 'android-development',
                 description: 'We build android application solutions improving your business effectiveness and efficiency.'
             },
             {
-                icon: 'https://via.placeholder.com/150.png',
+                icon:<SiMaterialdesignicons className={iconClasses} />,
+                image: 'https://via.placeholder.com/150.png',
                 title: 'Web Designing',
                 slug: 'web-designing',
                 description: 'Tech Bizz is a web & software development company that provides effective solutions in web designing.'
             },
             {
-                icon: 'https://via.placeholder.com/150.png',
+                icon:<BiCartAlt className={iconClasses} />,
+                image: 'https://via.placeholder.com/150.png',
                 title: 'E-commerce Solution',
                 slug: 'e-commerce-solution',
                 description: 'Tech Bizz provides innovative multi channel e-commerce solutions for retailers of both mid cap and large cap.'
             },
             {
-                icon: 'https://via.placeholder.com/150.png',
+                icon:<DiResponsive className={iconClasses} />,
+                image: 'https://via.placeholder.com/150.png',
                 title: 'Responsive Web Design',
                 slug: 'responsive-web-design',
                 description: 'Tech Bizz Software provides comprehensive services for mobile responsive website development for all main platforms.'
             },
             {
-                icon: 'https://via.placeholder.com/150.png',
+                icon:<SiGoogleoptimize className={iconClasses} />,
+                image: 'https://via.placeholder.com/150.png',
                 title: 'SEO',
                 slug: 'seo',
                 description: 'At Tech Bizz, a team of search engine optimization specialists work with you for long term positioning to get impactful results.'
