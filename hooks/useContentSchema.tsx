@@ -10,12 +10,16 @@ export default function UseContentSchema() {
     const [logo, setLogo] = useState({title: 'Tech Bizz', imagePath: '/logo.png'});
     const [navigationItems, setNavigationItems] = useState([
         {
-            title: 'About',
-            slug: 'about'
+            title: 'Work Process',
+            slug: 'work-process'
         },
         {
-            title: 'Services',
-            slug: 'services'
+            title: 'Why Choose Us',
+            slug: 'why-choose-us'
+        },
+        {
+            title: 'What We Do',
+            slug: 'what-we-do'
         },
         {
             title: 'Contact',
