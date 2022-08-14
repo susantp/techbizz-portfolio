@@ -6,6 +6,7 @@ import WorkProcessComponent from "../components/home/WorkProcessComponent";
 import WhyChooseUs from "../components/home/WhyChooseUsComponent";
 import WhatWeDoComponent from "../components/home/WhatWeDoComponent";
 import IndexHeadComponent from "../components/home/IndexHeadComponent";
+import ContactUsComponent from "../components/home/ContactUsComponent";
 
 
 const Home = (): JSX.Element => {
@@ -17,6 +18,7 @@ const Home = (): JSX.Element => {
             <WorkProcessComponent heading={workProcessComponent.heading} processes={workProcessComponent.processes}/>
             <WhyChooseUs heading={whyChooseUs.heading} content={whyChooseUs.content}/>
             <WhatWeDoComponent heading={whatWeDo.heading} items={whatWeDo.items}/>
+            <ContactUsComponent heading={`Contact US`}/>
         </div>
     )
 }
