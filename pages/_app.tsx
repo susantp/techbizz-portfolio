@@ -7,7 +7,8 @@ interface MyAppProps {
 }
 
 const MyApp: FC<MyAppProps> = ({Component, pageProps}): JSX.Element => {
-    return <Component {...pageProps} />
+    const getLayout = Component.getLayout || ((page) => page)
+    return getLayout(<Component {...pageProps} />)
 }
 
 export default MyApp

@@ -6,15 +6,18 @@ import React from "react";
 import WhyChooseUs from "../components/home/WhyChooseUsComponent";
 import WhatWeDoComponent from "../components/home/WhatWeDoComponent";
 
-const Home: React.FC = (): JSX.Element => {
+
+const Home = (): JSX.Element => {
     const {workProcessComponent, whyChooseUs, whatWeDo} = useContentSchema();
     return (
-        <Layout>
+        <div className={``}>
             <Slider/>
             <WorkProcessComponent heading={workProcessComponent.heading} processes={workProcessComponent.processes}/>
             <WhyChooseUs heading={whyChooseUs.heading} content={whyChooseUs.content}/>
-            <WhatWeDoComponent heading={whatWeDo.heading} items={whatWeDo.items} />
-        </Layout>
+            <WhatWeDoComponent heading={whatWeDo.heading} items={whatWeDo.items}/>
+        </div>
     )
 }
+Home.getLayout = (page) => <Layout>{page}</Layout>
+
 export default Home

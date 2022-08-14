@@ -7,7 +7,7 @@ function Layout({children}): JSX.Element {
     return (
         <div className={`bg-slate-100 `}>
             <Navbar></Navbar>
-            <Content>{children}</Content>
+            {children}
             <Footer></Footer>
         </div>
     );
