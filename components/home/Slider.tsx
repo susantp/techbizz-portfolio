@@ -2,7 +2,9 @@ import React, {FC} from 'react';
 
 const Slider: FC = (): JSX.Element => {
     return (
-        <div className={`container mx-auto bg-blue-100 h-32 mt-2`}>Sliders</div>
+        <div className={`bg-amber-100`}>
+            <div className={`container mx-auto h-64 mt-2`}>Sliders</div>
+        </div>
     );
 }
 

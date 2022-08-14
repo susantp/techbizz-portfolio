@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
+import {SiOctopusdeploy} from "react-icons/si";
+import {BiAnalyse} from "react-icons/bi";
+import {CgPerformance} from "react-icons/cg";
+import {MdDesignServices, MdOutlineDeveloperMode} from "react-icons/md";
 
 export default function UseContentSchema() {
+    const [iconClasses, setIconClasses] = useState('text-8xl text-orange-500');
     const [logo, setLogo] = useState({title: 'Tech Bizz', imagePath: '/logo.png'});
     const [navigationItems, setNavigationItems] = useState([
         {
@@ -19,11 +24,36 @@ export default function UseContentSchema() {
     const [workProcessComponent, setWorkProcessComponent] = useState({
         heading: 'our work process',
         processes: [
-            {slug: 'analysis', title: 'Analysis', icon: 'https://via.placeholder.com/150.png'},
-            {slug: 'designing', title: 'Designing', icon: 'https://via.placeholder.com/150.png'},
-            {slug: 'development', title: 'Development', icon: 'https://via.placeholder.com/150.png'},
-            {slug: 'testing', title: 'Testing', icon: 'https://via.placeholder.com/150.png'},
-            {slug: 'launch', title: 'Launch', icon: 'https://via.placeholder.com/150.png'}
+            {
+                slug: 'analysis',
+                title: 'Analysis',
+                image: 'https://via.placeholder.com/150.png',
+                icon: <BiAnalyse className={iconClasses}></BiAnalyse>
+            },
+            {
+                slug: 'designing',
+                title: 'Designing',
+                image: 'https://via.placeholder.com/150.png',
+                icon: <MdDesignServices  className={iconClasses}/>
+            },
+            {
+                slug: 'development',
+                title: 'Development',
+                image: 'https://via.placeholder.com/150.png',
+                icon: <MdOutlineDeveloperMode className={iconClasses}></MdOutlineDeveloperMode>
+            },
+            {
+                slug: 'testing',
+                title: 'Testing',
+                image: 'https://via.placeholder.com/150.png',
+                icon: <CgPerformance className={iconClasses}></CgPerformance>
+            },
+            {
+                slug: 'launch',
+                title: 'Launch',
+                image: 'https://via.placeholder.com/150.png',
+                icon: <SiOctopusdeploy className={iconClasses}></SiOctopusdeploy>
+            }
         ]
     });
     const [whyChooseUs, setWhyChooseUs] = useState({
