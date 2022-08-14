@@ -1,16 +1,18 @@
+import React from "react";
 import Layout from "../layout/Layout";
 import Slider from "../components/home/Slider";
 import useContentSchema from "../hooks/useContentSchema";
 import WorkProcessComponent from "../components/home/WorkProcessComponent";
-import React from "react";
 import WhyChooseUs from "../components/home/WhyChooseUsComponent";
 import WhatWeDoComponent from "../components/home/WhatWeDoComponent";
+import IndexHeadComponent from "../components/home/IndexHeadComponent";
 
 
 const Home = (): JSX.Element => {
     const {workProcessComponent, whyChooseUs, whatWeDo} = useContentSchema();
     return (
         <div className={``}>
+            <IndexHeadComponent/>
             <Slider/>
             <WorkProcessComponent heading={workProcessComponent.heading} processes={workProcessComponent.processes}/>
             <WhyChooseUs heading={whyChooseUs.heading} content={whyChooseUs.content}/>
