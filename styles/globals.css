@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .sectionDiv {
+        @apply flex flex-col gap-y-16 py-20 container mx-auto
+        /*@apply flex flex-col gap-y-4  py-20  container mx-auto*/
+    }
+    .headerText {
+        @apply text-xl uppercase text-center text-orange-500 font-bold
+    }
+}
