@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function Logo({title, imagePath}): JSX.Element {
     return (
-        <Image src={imagePath} alt={title} width={100} height={100}></Image>
+        <Image src={imagePath} alt={title} width={80} height={80}></Image>
     );
 }
 
