@@ -13,7 +13,7 @@ const Home = (): JSX.Element => {
     return (
         <div className={``}>
             <IndexHeadComponent/>
-            <Slider/>
+            {/*<Slider/>*/}
             <WorkProcessComponent heading={workProcessComponent.heading} processes={workProcessComponent.processes}/>
             <WhyChooseUs heading={whyChooseUs.heading} content={whyChooseUs.content}/>
             <WhatWeDoComponent heading={whatWeDo.heading} items={whatWeDo.items}/>
