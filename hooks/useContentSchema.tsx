@@ -4,11 +4,11 @@ import {BiAnalyse, BiCartAlt} from "react-icons/bi";
 import {CgPerformance, CgWebsite} from "react-icons/cg";
 import {DiResponsive} from "react-icons/di"
 import {MdDesignServices, MdOutlineDeveloperMode, MdOutlinePhoneInTalk, MdEmail} from "react-icons/md";
-
+import {IoLogoWhatsapp} from "react-icons/io"
 export default function UseContentSchema() {
     const [iconClasses, setIconClasses] = useState('text-8xl text-orange-500');
     const [headerInfo, setHeaderInfo] = useState({
-        phone: {content: '00977-9851040576', icon: <MdOutlinePhoneInTalk className={`text-4xl text-orange-500`}/>},
+        phone: {content: '+977-9851040576', icon: <IoLogoWhatsapp className={`text-4xl text-orange-500`}/>},
         email: {content: 'techbizznepal@gmail.com', icon: <MdEmail className={`text-4xl text-orange-500`}/>}
     });
     const [logo, setLogo] = useState({title: 'Tech Bizz', imagePath: '/logo.png'});
