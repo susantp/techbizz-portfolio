@@ -11,16 +11,9 @@ interface SingleWhatWeDoComponentProps {
 
 interface WhatWeDoComponentProps {
     heading: string,
-    items: Array<whatWeDoType>
+    items: Array<SingleWhatWeDoComponentProps>
 }
 
-type whatWeDoType = {
-    slug: string,
-    title: string,
-    description: string,
-    icon: ReactElement,
-    image:string,
-}
 const WhatWeDoComponent: FC<WhatWeDoComponentProps> = ({heading, items}): JSX.Element => {
 
     const SingleWhatWeDoComponent: FC<SingleWhatWeDoComponentProps> = ({title, slug, description, icon, image}): JSX.Element =>
