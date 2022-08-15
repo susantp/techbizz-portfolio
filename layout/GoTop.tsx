@@ -19,7 +19,7 @@ const GoTop: React.FC = (): JSX.Element => {
         document.documentElement.scrollTop = 0
     }
     return (
-        <div className={`fixed bottom-0 right-0 m-4 p-2 bg-orange-500 rounded-xl cursor-pointer ${scrollTopVisible} `} onClick={handleScrollTop}>
+        <div className={`fixed bottom-9 right-0 m-4 p-2 bg-orange-500 rounded-xl cursor-pointer ${scrollTopVisible} `} onClick={handleScrollTop}>
             <MdVerticalAlignTop className={`text-2xl text-white`}></MdVerticalAlignTop>
         </div>
     )
