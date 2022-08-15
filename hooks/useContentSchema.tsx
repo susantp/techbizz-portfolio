@@ -81,7 +81,13 @@ export default function UseContentSchema() {
                 image: 'https://via.placeholder.com/150.png',
                 title: 'Web Development',
                 slug: 'web-development',
-                description: 'Tech Bizz delivers end to end business solutions that leverage the deep industry and functional expertise.'
+                description: 'Tech Bizz delivers end to end business solutions that leverage the deep industry and functional expertise.',
+            },{
+                icon: <BiCartAlt className={iconClasses}/>,
+                image: 'https://via.placeholder.com/150.png',
+                title: 'E-commerce Solution',
+                slug: 'e-commerce-solution',
+                description: 'Tech Bizz provides innovative multi channel e-commerce solutions for retailers of both mid cap and large cap.'
             },
             {
                 icon: <SiAndroidstudio className={iconClasses}/>,
@@ -96,13 +102,6 @@ export default function UseContentSchema() {
                 title: 'Web Designing',
                 slug: 'web-designing',
                 description: 'Tech Bizz is a web & software development company that provides effective solutions in web designing.'
-            },
-            {
-                icon: <BiCartAlt className={iconClasses}/>,
-                image: 'https://via.placeholder.com/150.png',
-                title: 'E-commerce Solution',
-                slug: 'e-commerce-solution',
-                description: 'Tech Bizz provides innovative multi channel e-commerce solutions for retailers of both mid cap and large cap.'
             },
             {
                 icon: <DiResponsive className={iconClasses}/>,
