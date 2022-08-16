@@ -15,7 +15,7 @@ const ContactUsComponent = ({heading}): JSX.Element => {
             alert('Please fill form properly.')
             return
         }
-        const requestPath = process.env.APP_URL + '/api/googleSheetSubmit'
+        const requestPath = window.location.origin + '/api/googleSheetSubmit'
         let form = {
             name, email, subject, detail
         }
