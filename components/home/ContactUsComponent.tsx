@@ -17,7 +17,7 @@ const ContactUsComponent = ({heading}): JSX.Element => {
         let form = {
             name, email, subject, detail
         }
-        const response = await fetch('/api/googleSheetSubmit', {
+        const response = await fetch(`${process.env.APP_URL}/api/googleSheetSubmit`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
