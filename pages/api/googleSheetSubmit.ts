@@ -17,7 +17,6 @@ export default async function handler(
     }
     const body = req.body as SheetForm
     try {
-// prepare auth
         const auth = new google.auth.GoogleAuth({
             credentials: {
                 client_email: process.env.GOOGLE_CLIENT_EMAIL,
@@ -42,13 +41,11 @@ export default async function handler(
             },
             auth: auth,
         })
-        res.status(200).send({data: response})
-
-        return res.status(200).json({
-            data: response.data
+        const {data} = await response
+        res.status(200).json({
+            data
         })
     } catch (e) {
-        console.log('error',e)
-        return res.status(500).send({data: e})
+        return res.status(e.status).send({data: e.response.data})
     }
 }

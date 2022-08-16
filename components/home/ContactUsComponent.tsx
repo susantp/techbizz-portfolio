@@ -25,14 +25,18 @@ const ContactUsComponent = ({heading}): JSX.Element => {
                 'Content-Type': 'application/json'
             }
         }
-        const response = await axios.post(requestPath, JSON.stringify(form), config)
-        const {data} = await response.data;
-        data.status === 200
-            ? setMessage('Thank you.')
-            : setMessage('Something Went wrong.')
-        setName('')
-        setEmail('')
-        setSubject('')
+        try {
+            const response = await axios.post(requestPath, JSON.stringify(form), config)
+            const {data} = await response.data;
+            setMessage('Thank you.')
+            setName('')
+            setEmail('')
+            setSubject('')
+        } catch ({response}) {
+            console.log(response.data)
+            setMessage('Something Went wrong.')
+        }
+
     }
     return (
         <div>
