@@ -1,5 +1,6 @@
 import Layout from "../../layout/Layout";
 import React, {FC, FormEvent, useState} from "react";
+import axios from "axios";
 
 const ContactUsComponent = ({heading}): JSX.Element => {
     const [name, setName] = useState('');
@@ -14,24 +15,24 @@ const ContactUsComponent = ({heading}): JSX.Element => {
             alert('Please fill form properly.')
             return
         }
+        const requestPath = process.env.APP_URL + '/api/googleSheetSubmit'
         let form = {
             name, email, subject, detail
         }
-        const response = await fetch(`${process.env.APP_URL}/api/googleSheetSubmit`, {
-            method: "POST",
+        const config = {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(form)
-        })
-        const content = await response.json();
-        setMessage('Thank you.')
-        // content.data.status === 200 ? setMessage('Thank you.') : setMessage('Oops! Something went wrong.')
+            }
+        }
+        const response = await axios.post(requestPath, JSON.stringify(form), config)
+        const {data} = await response.data;
+        data.status === 200
+            ? setMessage('Thank you.')
+            : setMessage('Something Went wrong.')
         setName('')
         setEmail('')
         setSubject('')
-        setDetail('');
     }
     return (
         <div>

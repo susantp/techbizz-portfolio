@@ -4,6 +4,9 @@ const nextConfig = {
     swcMinify: true,
     images: {
         domains: ['via.placeholder.com']
+    },
+    env: {
+        APP_URL: "http://localhost:3000"
     }
 }
 
