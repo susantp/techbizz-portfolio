@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {MdVerticalAlignTop} from "react-icons/md";
 
-const GoTop: React.FC = (): JSX.Element => {
+const GoTop: React.FC = (): React.JSX.Element => {
     const [scrollTopVisible, setScrollTopVisible] = useState('invisible');
     useEffect(() => {
         const handleScroll = (event) => {

@@ -9,7 +9,7 @@ import IndexHeadComponent from "../components/home/IndexHeadComponent";
 import ContactUsComponent from "../components/home/ContactUsComponent";
 
 
-const Home = (): JSX.Element => {
+const Home = (): React.JSX.Element => {
     const {workProcessComponent, whyChooseUs, whatWeDo} = useContentSchema();
     return (
         <div className={``}>
