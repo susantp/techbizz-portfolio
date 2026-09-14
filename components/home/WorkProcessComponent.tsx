@@ -4,7 +4,7 @@ import { FaBeer } from 'react-icons/fa';
 
 interface SingleProcessComponentProps {
     title: string,
-    icon: JSX.Element,
+    icon: React.JSX.Element,
     image:string,
     slug: string,
 }
@@ -17,12 +17,12 @@ interface WorkProcessComponentProps {
 type processType = {
     slug: string,
     title: string,
-    icon: JSX.Element,
+    icon: React.JSX.Element,
     image: string
 }
-const WorkProcessComponent: FC<WorkProcessComponentProps> = ({heading, processes}): JSX.Element => {
+const WorkProcessComponent: FC<WorkProcessComponentProps> = ({heading, processes}): React.JSX.Element => {
 
-    const SingleProcessComponent: FC<SingleProcessComponentProps> = ({title, icon, slug, image}): JSX.Element =>
+    const SingleProcessComponent: FC<SingleProcessComponentProps> = ({title, icon, slug, image}): React.JSX.Element =>
         <div className={`flex flex-col gap-y-7 items-center`}>
             <div>
                 {icon}

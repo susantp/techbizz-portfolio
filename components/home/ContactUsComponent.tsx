@@ -2,7 +2,7 @@ import Layout from "../../layout/Layout";
 import React, {FC, FormEvent, useState} from "react";
 import axios from "axios";
 
-const ContactUsComponent = ({heading}): JSX.Element => {
+const ContactUsComponent = ({heading}): React.JSX.Element => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');

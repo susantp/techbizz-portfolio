@@ -4,7 +4,7 @@ import Content from "./Content";
 import Footer from "./Footer";
 import GoTop from "./GoTop";
 
-function Layout({children}): JSX.Element {
+function Layout({children}): React.JSX.Element {
     return (
         <div className={`bg-slate-100 `}>
             <Navbar></Navbar>

@@ -14,9 +14,9 @@ interface WhatWeDoComponentProps {
     items: Array<SingleWhatWeDoComponentProps>
 }
 
-const WhatWeDoComponent: FC<WhatWeDoComponentProps> = ({heading, items}): JSX.Element => {
+const WhatWeDoComponent: FC<WhatWeDoComponentProps> = ({heading, items}): React.JSX.Element => {
 
-    const SingleWhatWeDoComponent: FC<SingleWhatWeDoComponentProps> = ({title, slug, description, icon, image}): JSX.Element =>
+    const SingleWhatWeDoComponent: FC<SingleWhatWeDoComponentProps> = ({title, slug, description, icon, image}): React.JSX.Element =>
         <div className={`flex flex-col gap-y-3 items-center p-10`}>
             <div>
                 {typeof icon === "object" ? icon : <Image src={image} width={150} height={150} alt={slug}/>}

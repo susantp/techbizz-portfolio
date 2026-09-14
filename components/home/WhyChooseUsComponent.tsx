@@ -6,7 +6,7 @@ interface whyChooseUsProps {
 }
 
 const WhyChooseUsComponent: FC<whyChooseUsProps> =
-    ({heading, content}): JSX.Element => {
+    ({heading, content}): React.JSX.Element => {
         return (
             <div>
                 <div className={`sectionDiv`}>

@@ -5,7 +5,7 @@ import Logo from "../components/home/Logo";
 import HeaderInfo from "../components/home/HeaderInfo";
 
 
-function Navbar(): JSX.Element {
+function Navbar(): React.JSX.Element {
     const {headerInfo, navigationItems, logo} = useContentSchema()
     return (
         <div className={`sticky top-0  bg-white bg-opacity-50 z-10 shadow-sm`}>

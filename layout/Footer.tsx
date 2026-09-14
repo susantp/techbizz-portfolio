@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-const Footer: FC = (props): JSX.Element => {
+const Footer: FC = (props): React.JSX.Element => {
     const year = new Date()
     return (
         <footer className={`bg-brown-900 text-white items-center py-3`}>

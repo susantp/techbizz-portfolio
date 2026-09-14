@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SiOctopusdeploy, SiGoogleoptimize, SiAndroidstudio, SiMaterialdesignicons} from "react-icons/si";
+import {SiOctopusdeploy, SiGoogleanalytics, SiAndroidstudio, SiMaterialdesignicons} from "react-icons/si";
 import {BiAnalyse, BiCartAlt} from "react-icons/bi";
 import {CgPerformance, CgWebsite} from "react-icons/cg";
 import {DiResponsive} from "react-icons/di"
@@ -111,7 +111,7 @@ export default function UseContentSchema() {
                 description: 'Tech Bizz Software provides comprehensive services for mobile responsive website development for all main platforms.'
             },
             {
-                icon: <SiGoogleoptimize className={iconClasses}/>,
+                icon: <SiGoogleanalytics className={iconClasses}/>,
                 image: 'https://via.placeholder.com/150.png',
                 title: 'SEO',
                 slug: 'seo',
@@ -132,5 +132,4 @@ export default function UseContentSchema() {
         headerInfo
     };
 }
-
 
