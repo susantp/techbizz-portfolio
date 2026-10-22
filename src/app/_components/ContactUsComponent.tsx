@@ -49,7 +49,7 @@ const ContactUsComponent = ({heading}: { heading: string }): React.JSX.Element =
                     <form className={`flex flex-col  w-1/2 gap-y-2`} onSubmit={handleSubmit}>
                         <input
                             onChange={e => setName(e.target.value)}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
                             id="username"
                             type="text"
                             placeholder="Name"
@@ -58,25 +58,25 @@ const ContactUsComponent = ({heading}: { heading: string }): React.JSX.Element =
                         <input
                             value={email}
                             onChange={e => setEmail(e.target.value)}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
                             id="email" type="email" placeholder="Email"
                         />
                         <input
                             value={subject}
                             onChange={e => setSubject(e.target.value)}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
                             id="subject" type="text" placeholder="Subject"
                         />
                         <textarea
                             onChange={e => setDetail(e.target.value)}
                             defaultValue={detail}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
                             id="detail" placeholder="Detail" rows={5}
                         >
 
                     </textarea>
                         <button
-                            className="bg-orange-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            className="bg-orange-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-hidden focus:shadow-outline"
                             type="submit"
                         >
                             Submit

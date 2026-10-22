@@ -6,7 +6,7 @@ Company portfolio website for Tech Bizz Pvt. Ltd., a software and web developmen
 
 - Next.js 16 with App Router and TypeScript
 - React 19, with Server Components for pages and static sections
-- Tailwind CSS 3 and React Icons
+- Tailwind CSS 4 and React Icons
 - Google Sheets API with service account authentication
 - Bun for package management and scripts
 - Standalone Node.js output for Docker deployment
@@ -66,7 +66,7 @@ The contact form and `GoTop` control are Client Components. Pages, the shared la
 - Update the title, description, social preview, and viewport settings in `src/app/layout.tsx`.
 - Update shared navigation and footer components in `src/components/layout/`.
 - Put static images in `public/` and reference them from `/`, such as `/logo.png`.
-- Adjust shared styles in `src/app/globals.css` and theme settings in `tailwind.config.js`.
+- Adjust shared styles in `src/app/globals.css` and theme settings in the same file (the `@theme` block).
 
 ## Commands and validation
 
@@ -107,6 +107,8 @@ PORT=3002 HOSTNAME=0.0.0.0 node .next/standalone/server.js
 
 Commit `bun.lock` after dependency changes and use `bun install --frozen-lockfile` for reproducible installs. Run `bun audit` when updating dependencies.
 
-The previous dependency review recorded the following finding on 2026-10-22; rerun the audit to determine its current status:
+Dependency upgrades across major versions can require configuration changes. Tailwind CSS 4 uses `@tailwindcss/postcss`, with its theme and forms plugin configured in `src/app/globals.css`.
 
-> As of 2026-10-22, GHSA-vfj7-8cjw-p6xm affects `braces@3.0.3` and has no published patched release. It remains in the ESLint and Tailwind 3 glob tooling dependency chain. Do not pass untrusted glob patterns to this tooling. Recheck the upstream advisory when updating dependencies; this residual finding is not suppressed.
+TypeScript 7 provides the `tsc` executable through the `@typescript/native` alias. The `typescript` dependency aliases Microsoft's `@typescript/typescript6` compatibility package because ESLint's TypeScript tooling still requires the JavaScript compiler API. Keep both aliases when updating dependencies; `bun run build` uses the TypeScript 7 CLI.
+
+The audit on 2026-10-22 reports one high-severity finding in `braces@3.0.3`, reached through `eslint-config-next` → `@next/eslint-plugin-next` → `fast-glob` → `micromatch`. Track [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) and rerun `bun audit` after tooling updates.
