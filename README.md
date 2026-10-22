@@ -5,9 +5,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
+bun install --frozen-lockfile
+bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -32,3 +31,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Dependency security
+
+Use Bun 1.4.4 or newer and commit `bun.lock` after dependency changes. CI and Docker builds install with `bun install --frozen-lockfile`. Run `bun audit` to check the locked dependency graph.
+
+As of 2026-10-22, GHSA-vfj7-8cjw-p6xm affects `braces@3.0.3` and has no published patched release. It remains in the ESLint and Tailwind 3 glob tooling dependency chain. Do not pass untrusted glob patterns to this tooling. Recheck the upstream advisory when updating dependencies; this residual finding is not suppressed.

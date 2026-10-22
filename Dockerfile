@@ -1,16 +1,13 @@
-FROM node:24-bookworm-slim AS dependencies
-
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+FROM oven/bun:1.4.4 AS bun
 
 FROM node:24-bookworm-slim AS builder
 
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
+COPY --from=bun /usr/local/bin/bun /usr/local/bin/bun
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
 COPY . .
-RUN npm run build
+RUN bun run build
 
 FROM node:24-bookworm-slim AS runner
 
