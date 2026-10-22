@@ -1,8 +1,9 @@
-import Layout from "../../layout/Layout";
-import React, {FC, FormEvent, useState} from "react";
+"use client";
+
+import React, {FormEvent, useState} from "react";
 import axios from "axios";
 
-const ContactUsComponent = ({heading}): React.JSX.Element => {
+const ContactUsComponent = ({heading}: { heading: string }): React.JSX.Element => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
@@ -32,8 +33,8 @@ const ContactUsComponent = ({heading}): React.JSX.Element => {
             setName('')
             setEmail('')
             setSubject('')
-        } catch ({response}) {
-            console.log(response.data)
+        } catch (error) {
+            console.error(error)
             setMessage('Something Went wrong.')
         }
 
@@ -88,5 +89,4 @@ const ContactUsComponent = ({heading}): React.JSX.Element => {
         </div>
     )
 }
-ContactUsComponent.getLayout = (page) => <Layout>{page}</Layout>
 export default ContactUsComponent;

@@ -1,15 +1,17 @@
+"use client";
+
 import React, {useEffect, useState} from "react";
 import {MdVerticalAlignTop} from "react-icons/md";
 
 const GoTop: React.FC = (): React.JSX.Element => {
     const [scrollTopVisible, setScrollTopVisible] = useState('invisible');
     useEffect(() => {
-        const handleScroll = (event) => {
-            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop
-            let itemTranslate = Math.min(0, scrollTop / 3 - 60);
+        const handleScroll = () => {
+            const scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+            const itemTranslate = Math.min(0, scrollTop / 3 - 60);
             setScrollTopVisible(() => itemTranslate === 0 ? 'visible' : 'invisible')
         }
-        window.addEventListener('scroll', handleScroll)
+        window.addEventListener('scroll', handleScroll, { passive: true })
         return () => {
             window.removeEventListener('scroll', handleScroll)
         };
@@ -19,9 +21,9 @@ const GoTop: React.FC = (): React.JSX.Element => {
         document.documentElement.scrollTop = 0
     }
     return (
-        <div className={`fixed bottom-9 right-0 m-4 p-2 bg-orange-500 rounded-xl cursor-pointer ${scrollTopVisible} `} onClick={handleScrollTop}>
+        <button type="button" aria-label="Back to top" className={`fixed bottom-9 right-0 m-4 p-2 bg-orange-500 rounded-xl cursor-pointer ${scrollTopVisible} `} onClick={handleScrollTop}>
             <MdVerticalAlignTop className={`text-2xl text-white`}></MdVerticalAlignTop>
-        </div>
+        </button>
     )
 }
 export default GoTop;

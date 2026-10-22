@@ -1,36 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {SiOctopusdeploy, SiGoogleanalytics, SiAndroidstudio, SiMaterialdesignicons} from "react-icons/si";
 import {BiAnalyse, BiCartAlt} from "react-icons/bi";
 import {CgPerformance, CgWebsite} from "react-icons/cg";
 import {DiResponsive} from "react-icons/di"
-import {MdDesignServices, MdOutlineDeveloperMode, MdOutlinePhoneInTalk, MdEmail} from "react-icons/md";
+import {MdDesignServices, MdOutlineDeveloperMode, MdEmail} from "react-icons/md";
 import {IoLogoWhatsapp} from "react-icons/io"
-export default function UseContentSchema() {
-    const [iconClasses, setIconClasses] = useState('text-8xl text-orange-500');
-    const [headerInfo, setHeaderInfo] = useState({
+
+const iconClasses = 'text-8xl text-orange-500';
+
+export const headerInfo = {
         phone: {content: '+977-9851040576', icon: <IoLogoWhatsapp className={`text-4xl text-orange-500`}/>},
         email: {content: 'techbizznepal@gmail.com', icon: <MdEmail className={`text-4xl text-orange-500`}/>}
-    });
-    const [logo, setLogo] = useState({title: 'Tech Bizz', imagePath: '/logo.png'});
-    const [navigationItems, setNavigationItems] = useState([
-        {
-            title: 'Work Process',
-            slug: 'work-process'
-        },
-        {
-            title: 'Why Choose Us',
-            slug: 'why-choose-us'
-        },
-        {
-            title: 'What We Do',
-            slug: 'what-we-do'
-        },
-        {
-            title: 'Contact',
-            slug: 'contact'
-        }
-    ]);
-    const [workProcessComponent, setWorkProcessComponent] = useState({
+    };
+
+export const logo = {title: 'Tech Bizz', imagePath: '/logo.png'};
+
+export const workProcessComponent = {
         heading: 'our work process',
         processes: [
             {
@@ -64,16 +49,18 @@ export default function UseContentSchema() {
                 icon: <SiOctopusdeploy className={iconClasses}></SiOctopusdeploy>
             }
         ]
-    });
-    const [whyChooseUs, setWhyChooseUs] = useState({
+    };
+
+export const whyChooseUs = {
         heading: 'why choose us',
         content: 'Tech Bizz offers professional Website design and development, Mobile Application, SEO and Marketing of your product.\n' +
             '\n' +
             'We strive to offer the best solution for your business and impartial advice at an honest price. We are constantly investigating new latest technologies and recommend them when they make sense.\n' +
             '\n' +
             'We provide solutions and guarantee our work. You can be rest assured that you won’t have any unpleasant surprises. We are always ready to help.'
-    });
-    const [whatWeDo, setWhatWeDo] = useState({
+    };
+
+export const whatWeDo = {
         heading: "what we do",
         items: [
             {
@@ -118,18 +105,4 @@ export default function UseContentSchema() {
                 description: 'At Tech Bizz, a team of search engine optimization specialists work with you for long term positioning to get impactful results.'
             },
         ]
-    });
-    const [clients, setClients] = useState([{}, {}, {}, {}, {}, {}, {}, {},]);
-
-
-    return {
-        navigationItems,
-        logo,
-        workProcessComponent,
-        whyChooseUs,
-        whatWeDo,
-        clients,
-        headerInfo
     };
-}
-

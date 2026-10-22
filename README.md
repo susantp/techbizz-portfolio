@@ -1,39 +1,112 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tech Bizz Portfolio
 
-## Getting Started
+Company portfolio website for Tech Bizz Pvt. Ltd., a software and web development company in Kathmandu, Nepal. The homepage presents the company's work process, services, contact details, and inquiry form. Contact inquiries are appended to a Google Sheet.
 
-First, run the development server:
+## Technology
+
+- Next.js 16 with App Router and TypeScript
+- React 19, with Server Components for pages and static sections
+- Tailwind CSS 3 and React Icons
+- Google Sheets API with service account authentication
+- Bun for package management and scripts
+- Standalone Node.js output for Docker deployment
+
+## Local development
+
+Requirements: Node.js 20.9 or newer and Bun 1.4.4 or newer. The Docker image uses Node.js 24.
 
 ```bash
 bun install --frozen-lockfile
 bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The public pages render without Google credentials; contact submissions require the configuration below.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Contact form configuration
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
+Create a `.env.local` file in the project root:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```dotenv
+GOOGLE_CLIENT_EMAIL="your-service-account@your-project.iam.gserviceaccount.com"
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n"
+GOOGLE_SHEET_ID="your-spreadsheet-id"
+```
 
-## Learn More
+Use the service account's `client_email` and `private_key`. The integration converts literal `\n` sequences in the private key into newlines. Keep these credentials server-side; `.env.local` is ignored by Git.
 
-To learn more about Next.js, take a look at the following resources:
+Enable the Google Sheets API in the service account's Google Cloud project and share the destination spreadsheet with `GOOGLE_CLIENT_EMAIL` as an editor. Set `GOOGLE_SHEET_ID` to the ID from the spreadsheet URL, then restart the development server after changing environment variables.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The form sends `name`, `email`, `subject`, and `detail` to `POST /api/googleSheetSubmit`. The server validates that all four fields are non-empty strings and appends them in that order using range `A1:D1` and `USER_ENTERED` input mode. It returns 400 for invalid input and 500 if the Sheets integration fails. A successful submission writes a real row to the configured spreadsheet.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Project structure
 
-## Deploy on Vercel
+```text
+src/
+├── app/
+│   ├── layout.tsx                  # HTML shell, shared layout, SEO metadata
+│   ├── page.tsx                    # Homepage
+│   ├── globals.css                 # Tailwind directives and shared styles
+│   ├── about/page.tsx              # Placeholder About page
+│   ├── _components/                # Homepage sections and contact form
+│   └── api/
+│       ├── googleSheetSubmit/route.ts
+│       └── hello/route.ts          # Sample GET endpoint
+├── components/layout/             # Navbar, footer, logo, contact info, GoTop
+├── content/site-content.tsx       # Static company content and icons
+└── lib/google-sheets.ts            # Server-only Google Sheets integration
+public/                            # Logo, favicon, and other static assets
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The contact form and `GoTop` control are Client Components. Pages, the shared layout, and static sections render as Server Components. The `@/` import alias points to `src/`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Updating the site
 
-## Dependency security
+- Edit company details, service descriptions, and work process content in `src/content/site-content.tsx`.
+- Edit homepage sections in `src/app/_components/` and compose them in `src/app/page.tsx`.
+- Update the title, description, social preview, and viewport settings in `src/app/layout.tsx`.
+- Update shared navigation and footer components in `src/components/layout/`.
+- Put static images in `public/` and reference them from `/`, such as `/logo.png`.
+- Adjust shared styles in `src/app/globals.css` and theme settings in `tailwind.config.js`.
 
-Use Bun 1.4.4 or newer and commit `bun.lock` after dependency changes. CI and Docker builds install with `bun install --frozen-lockfile`. Run `bun audit` to check the locked dependency graph.
+## Commands and validation
 
-As of 2026-10-22, GHSA-vfj7-8cjw-p6xm affects `braces@3.0.3` and has no published patched release. It remains in the ESLint and Tailwind 3 glob tooling dependency chain. Do not pass untrusted glob patterns to this tooling. Recheck the upstream advisory when updating dependencies; this residual finding is not suppressed.
+| Command | Purpose |
+| --- | --- |
+| `bun run dev` | Start the development server on port 3000 |
+| `bun run lint` | Run ESLint |
+| `bun run build` | Build the production application and check TypeScript |
+| `bun run start` | Invoke `next start`; use the standalone server below for the configured production output |
+| `bun audit` | Check the locked dependency graph for reported vulnerabilities |
+
+There is no automated test suite configured. Before shipping changes, run lint and the production build, check `/` and `/about`, and verify contact submissions against an appropriate Google Sheet when credentials are available.
+
+## Production deployment
+
+The project sets `output: 'standalone'` in `next.config.js`. The Dockerfile installs dependencies using `bun.lock`, builds the application, copies the standalone server and static assets, and runs as the `node` user on port 3002.
+
+For Docker, create `.env.docker.local` with the same three variables using unquoted `KEY=value` entries. Keep the private key on one line with literal `\n` sequences; Docker env files do not remove surrounding quotes. This file is also ignored by Git.
+
+```bash
+docker build -t techbizz-portfolio .
+docker run --rm -p 3002:3002 --env-file .env.docker.local techbizz-portfolio
+```
+
+Open [http://localhost:3002](http://localhost:3002). Environment files are excluded from the Docker build context; supply the Google credentials at runtime. Docker reads env-file values literally, so use unquoted `KEY=value` entries for that command and retain literal `
+` sequences in the private key. Alternatively, supply variables through the deployment environment's secret configuration.
+
+To run the standalone output directly after `bun run build`, copy the assets alongside the generated server. Supply the three Google variables through the process environment to enable submissions:
+
+```bash
+cp -R public .next/standalone/public
+mkdir -p .next/standalone/.next
+cp -R .next/static .next/standalone/.next/static
+PORT=3002 HOSTNAME=0.0.0.0 node .next/standalone/server.js
+```
+
+## Dependency maintenance
+
+Commit `bun.lock` after dependency changes and use `bun install --frozen-lockfile` for reproducible installs. Run `bun audit` when updating dependencies.
+
+The previous dependency review recorded the following finding on 2026-10-22; rerun the audit to determine its current status:
+
+> As of 2026-10-22, GHSA-vfj7-8cjw-p6xm affects `braces@3.0.3` and has no published patched release. It remains in the ESLint and Tailwind 3 glob tooling dependency chain. Do not pass untrusted glob patterns to this tooling. Recheck the upstream advisory when updating dependencies; this residual finding is not suppressed.
