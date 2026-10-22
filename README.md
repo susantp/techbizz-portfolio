@@ -82,6 +82,8 @@ There is no automated test suite configured. Before shipping changes, run lint a
 
 ## Production deployment
 
+After pushing to `main`, check the Vercel deployment status and confirm its source commit matches the pushed commit before considering the release complete.
+
 The project sets `output: 'standalone'` in `next.config.js`. The Dockerfile installs dependencies using `bun.lock`, builds the application, copies the standalone server and static assets, and runs as the `node` user on port 3002.
 
 For Docker, create `.env.docker.local` with the same three variables using unquoted `KEY=value` entries. Keep the private key on one line with literal `\n` sequences; Docker env files do not remove surrounding quotes. This file is also ignored by Git.
