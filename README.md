@@ -40,33 +40,47 @@ The form sends `name`, `email`, `subject`, and `detail` to `POST /api/googleShee
 
 ## Project structure
 
-```text
+~~~text
 src/
 ├── app/
 │   ├── layout.tsx                  # HTML shell, shared layout, SEO metadata
-│   ├── page.tsx                    # Homepage
+│   ├── page.tsx                    # Homepage composition from content.page
 │   ├── globals.css                 # Tailwind directives and shared styles
-│   ├── about/page.tsx              # Placeholder About page
+│   ├── about/page.tsx              # Company About page
 │   ├── _components/                # Homepage sections and contact form
 │   └── api/
+│       ├── content/route.ts        # Read-only homepage content
+│       ├── content/about/route.ts # Read-only About page content
 │       ├── googleSheetSubmit/route.ts
 │       └── hello/route.ts          # Sample GET endpoint
-├── components/layout/             # Navbar, footer, logo, contact info, GoTop
-├── content/site-content.tsx       # Static company content and icons
+├── components/
+│   ├── content-icons.ts            # Typed content icon ID resolver
+│   └── layout/                     # Navbar, footer, logo, contact info, GoTop
+├── content/
+│   ├── index.ts                    # { layout, page, about: { page } } tree
+│   ├── layout.ts                   # Shared layout, metadata, and viewport
+│   ├── page.ts                     # Homepage content assembly
+│   ├── about/page.ts               # About page content
+│   └── home/                       # Homepage section data
 └── lib/google-sheets.ts            # Server-only Google Sheets integration
 public/                            # Logo, favicon, and other static assets
-```
+~~~
 
-The contact form and `GoTop` control are Client Components. Pages, the shared layout, and static sections render as Server Components. The `@/` import alias points to `src/`.
+The TypeScript content tree is the source for both rendered pages and the static read-only APIs. Edit shared navigation, metadata, viewport, footer, and back-to-top labels in src/content/layout.ts; edit homepage sections in src/content/home/; and edit the About heading in src/content/about/page.ts. Content stores icon IDs as strings, resolved by src/components/content-icons.ts.
+
+- GET /api/content returns { layout, page } for the homepage.
+- GET /api/content/about returns { layout, page } for the company About page.
+
+Both content handlers are statically generated from the checked-in model. The contact form remains a separate POST /api/googleSheetSubmit endpoint and continues to append submissions to the configured Google Sheet. The contact form and GoTop control are Client Components; pages, the shared layout, and static sections render as Server Components. The @/ import alias points to src/.
 
 ## Updating the site
 
-- Edit company details, service descriptions, and work process content in `src/content/site-content.tsx`.
-- Edit homepage sections in `src/app/_components/` and compose them in `src/app/page.tsx`.
-- Update the title, description, social preview, and viewport settings in `src/app/layout.tsx`.
-- Update shared navigation and footer components in `src/components/layout/`.
-- Put static images in `public/` and reference them from `/`, such as `/logo.png`.
-- Adjust shared styles in `src/app/globals.css` and theme settings in the same file (the `@theme` block).
+- Edit company details, service descriptions, work process, and contact form copy in their leaf modules under src/content/home/.
+- Edit shared layout and SEO data in src/content/layout.ts, and About page data in src/content/about/page.ts.
+- Edit section UI in src/app/_components/ and compose homepage sections in src/app/page.tsx.
+- Add an icon ID to the content and its component mapping in src/components/content-icons.ts.
+- Put static images in public/ and reference them from /, such as /logo.png.
+- Adjust shared styles in src/app/globals.css and theme settings in the same file (the @theme block).
 
 ## Commands and validation
 

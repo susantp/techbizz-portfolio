@@ -1,25 +1,29 @@
-import React, {FC,ReactElement} from 'react';
+import React, {FC} from 'react';
 import Image from "next/image";
+import { contentIcons, type ContentIconId } from "@/components/content-icons";
+import type { page } from "@/content/page";
+
+type Service = (typeof page.whatWeDo.items)[number];
 
 interface SingleWhatWeDoComponentProps {
-    title: string,
-    icon: ReactElement,
-    image:string,
-    slug: string,
-    description: string
+    title: string;
+    icon?: ContentIconId;
+    image: string;
+    slug: string;
+    description: string;
 }
 
 interface WhatWeDoComponentProps {
-    heading: string,
-    items: Array<SingleWhatWeDoComponentProps>
+    heading: string;
+    items: readonly Service[];
 }
 
 const WhatWeDoComponent: FC<WhatWeDoComponentProps> = ({heading, items}): React.JSX.Element => {
-
-    const SingleWhatWeDoComponent: FC<SingleWhatWeDoComponentProps> = ({title, slug, description, icon, image}): React.JSX.Element =>
-        <div className={`flex flex-col gap-y-3 items-center p-10`}>
+    const SingleWhatWeDoComponent: FC<SingleWhatWeDoComponentProps> = ({title, slug, description, icon, image}): React.JSX.Element => {
+        const Icon = icon ? contentIcons[icon] : undefined;
+        return <div className={`flex flex-col gap-y-3 items-center p-10`}>
             <div>
-                {typeof icon === "object" ? icon : <Image src={image} width={150} height={150} alt={slug}/>}
+                {Icon ? <Icon className="text-8xl text-orange-500" /> : <Image src={image} width={150} height={150} alt={slug}/>}
             </div>
             <div>
                 <p className={`text-4xl sm:text-xl font-medium text-center text-slate-600`}>{title}</p>
@@ -27,7 +31,8 @@ const WhatWeDoComponent: FC<WhatWeDoComponentProps> = ({heading, items}): React.
             <div >
                 <p className={`text-sm text-center text-slate-400`}>{description}</p>
             </div>
-        </div>
+        </div>;
+    };
 
     return (
         <div className={`bg-blue-100`}>

@@ -1,37 +1,34 @@
 import React, {FC} from 'react';
-import Image from "next/image";
-import { FaBeer } from 'react-icons/fa';
+import { contentIcons, type ContentIconId } from "@/components/content-icons";
+import type { page } from "@/content/page";
+
+type Process = (typeof page.workProcess.processes)[number];
 
 interface SingleProcessComponentProps {
-    title: string,
-    icon: React.JSX.Element,
-    image:string,
-    slug: string,
+    title: string;
+    icon: ContentIconId;
+    image: string;
+    slug: string;
 }
 
 interface WorkProcessComponentProps {
-    heading: string,
-    processes: Array<processType>
+    heading: string;
+    processes: readonly Process[];
 }
 
-type processType = {
-    slug: string,
-    title: string,
-    icon: React.JSX.Element,
-    image: string
-}
 const WorkProcessComponent: FC<WorkProcessComponentProps> = ({heading, processes}): React.JSX.Element => {
-
-    const SingleProcessComponent: FC<SingleProcessComponentProps> = ({title, icon, slug, image}): React.JSX.Element =>
-        <div className={`flex flex-col gap-y-7 items-center`}>
+    const SingleProcessComponent: FC<SingleProcessComponentProps> = ({title, icon, slug, image}): React.JSX.Element => {
+        const Icon = contentIcons[icon];
+        return <div className={`flex flex-col gap-y-7 items-center`}>
             <div>
-                {icon}
+                <Icon className="text-8xl text-orange-500" />
                 {/*<Image src={icon} width={150} height={150} alt={slug}/>*/}
             </div>
             <div>
                 <p className={`text-4xl text-slate-600`}>{title}</p>
             </div>
-        </div>
+        </div>;
+    };
 
     return (
         <div className={`bg-blue-100`}>

@@ -2,8 +2,11 @@
 
 import React, {FormEvent, useState} from "react";
 import axios from "axios";
+import type { page } from "@/content/page";
 
-const ContactUsComponent = ({heading}: { heading: string }): React.JSX.Element => {
+type ContactContent = typeof page.contact;
+
+const ContactUsComponent = ({content}: { content: ContactContent }): React.JSX.Element => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
@@ -13,7 +16,7 @@ const ContactUsComponent = ({heading}: { heading: string }): React.JSX.Element =
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (name === '' || email === '' || subject === '' || detail === '') {
-            alert('Please fill form properly.')
+            alert(content.messages.incomplete)
             return
         }
         const requestPath = window.location.origin + '/api/googleSheetSubmit'
@@ -29,20 +32,20 @@ const ContactUsComponent = ({heading}: { heading: string }): React.JSX.Element =
         try {
             const response = await axios.post(requestPath, JSON.stringify(form), config)
             const {data} = await response.data;
-            setMessage('Thank you.')
+            setMessage(content.messages.success)
             setName('')
             setEmail('')
             setSubject('')
         } catch (error) {
             console.error(error)
-            setMessage('Something Went wrong.')
+            setMessage(content.messages.error)
         }
 
     }
     return (
         <div>
             <div className={`sectionDiv`}>
-                <div className={`py-4`}><h2 className={`headerText`}>{heading}</h2></div>
+                <div className={`py-4`}><h2 className={`headerText`}>{content.heading}</h2></div>
                 <div className="w-full flex flex-col gap-y-2 items-center justify-center">
                     <div
                         className={`text-center text-green-800 font-bold ${message !== '' ? 'visible' : 'invisible'}`}>{message}</div>
@@ -52,26 +55,26 @@ const ContactUsComponent = ({heading}: { heading: string }): React.JSX.Element =
                             className="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
                             id="username"
                             type="text"
-                            placeholder="Name"
+                            placeholder={content.placeholders.name}
                             value={name}
                         />
                         <input
                             value={email}
                             onChange={e => setEmail(e.target.value)}
                             className="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
-                            id="email" type="email" placeholder="Email"
+                            id="email" type="email" placeholder={content.placeholders.email}
                         />
                         <input
                             value={subject}
                             onChange={e => setSubject(e.target.value)}
                             className="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
-                            id="subject" type="text" placeholder="Subject"
+                            id="subject" type="text" placeholder={content.placeholders.subject}
                         />
                         <textarea
                             onChange={e => setDetail(e.target.value)}
                             defaultValue={detail}
                             className="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
-                            id="detail" placeholder="Detail" rows={5}
+                            id="detail" placeholder={content.placeholders.detail} rows={5}
                         >
 
                     </textarea>
@@ -79,7 +82,7 @@ const ContactUsComponent = ({heading}: { heading: string }): React.JSX.Element =
                             className="bg-orange-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-hidden focus:shadow-outline"
                             type="submit"
                         >
-                            Submit
+                            {content.submitLabel}
                         </button>
                     </form>
 
