@@ -96,9 +96,9 @@ There is no automated test suite configured. Before shipping changes, run lint a
 
 ## Production deployment
 
-After pushing to `main`, check the Vercel deployment status and confirm its source commit matches the pushed commit before considering the release complete.
+Vercel uses Bun 1.4.x for the Functions runtime. After pushing to `main`, check the Vercel deployment status and confirm its source commit matches the pushed commit before considering the release complete.
 
-The project sets `output: 'standalone'` in `next.config.js`. The Dockerfile installs dependencies using `bun.lock`, builds the application, copies the standalone server and static assets, and runs as the `node` user on port 3002.
+The project sets `output: 'standalone'` in `next.config.js`. The Dockerfile installs dependencies using `bun.lock`, builds the application, copies the standalone server and static assets, and runs the server with Bun as the `bun` user on port 3002.
 
 For Docker, create `.env.docker.local` with the same three variables using unquoted `KEY=value` entries. Keep the private key on one line with literal `\n` sequences; Docker env files do not remove surrounding quotes. This file is also ignored by Git.
 
@@ -116,7 +116,7 @@ To run the standalone output directly after `bun run build`, copy the assets alo
 cp -R public .next/standalone/public
 mkdir -p .next/standalone/.next
 cp -R .next/static .next/standalone/.next/static
-PORT=3002 HOSTNAME=0.0.0.0 node .next/standalone/server.js
+PORT=3002 HOSTNAME=0.0.0.0 bun .next/standalone/server.js
 ```
 
 ## Dependency maintenance

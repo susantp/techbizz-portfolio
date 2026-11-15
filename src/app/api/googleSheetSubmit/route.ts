@@ -1,7 +1,5 @@
 import { appendContact, type SheetForm } from '@/lib/google-sheets';
 
-export const runtime = 'nodejs';
-
 export async function POST(request: Request) {
     let body: unknown;
     try {
