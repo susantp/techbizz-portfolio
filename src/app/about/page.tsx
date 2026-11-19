@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { content } from "@/content";
 
 export const metadata: Metadata = {
+    robots: { index: false },
     alternates: { canonical: "https://www.techbizznepal.com/about" },
 };
 
