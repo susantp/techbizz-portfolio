@@ -2,6 +2,12 @@
 const nextConfig = {
     reactStrictMode: true,
     output: 'standalone',
+    redirects() {
+        return [
+            { source: '/index.php', destination: '/', permanent: true },
+            { source: '/index.html', destination: '/', permanent: true }
+        ]
+    },
     images: {
         remotePatterns: [
             {

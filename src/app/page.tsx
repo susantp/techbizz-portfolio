@@ -1,9 +1,14 @@
 import React from "react";
+import type { Metadata } from "next";
 import { content } from "@/content";
 import WorkProcessComponent from "./_components/WorkProcessComponent";
 import WhyChooseUs from "./_components/WhyChooseUsComponent";
 import WhatWeDoComponent from "./_components/WhatWeDoComponent";
 import ContactUsComponent from "./_components/ContactUsComponent";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://www.techbizznepal.com/" },
+};
 
 const Home = (): React.JSX.Element => (
   <div className="">
