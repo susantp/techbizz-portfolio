@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Privacy Policy | Tech Bizz',
     description: 'How Tech Bizz handles information when you visit our website or use the Tech Bizz mobile app.',
+    alternates: { canonical: 'https://www.techbizznepal.com/privacy-policy' },
 };
 
 export default function PrivacyPolicyPage() {
